@@ -1,0 +1,52 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 10px;
+  width: 320px;
+}
+
+h3 {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+textarea, input {
+  width: 100%;
+  padding: 6px;
+  margin-top: 5px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+button {
+  margin-right: 5px;
+  margin-top: 5px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: #f0f0f0;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #d0d0d0;
+}
+
+button#explainBtn {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#result {
+  white-space: pre-wrap;
+  margin-top: 15px;
+  font-size: 14px;
+  background: #f7f7f7;
+  padding: 10px;
+  border-radius: 6px;
+}
