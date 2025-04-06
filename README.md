@@ -62,7 +62,7 @@ LaymanAI/
 
 3. Create a `.env` file in the `server` directory with the following content:
    ```env
-   GEMINI_API_KEY=your_api_key_here
+   API_KEY=your_api_key_here
    PORT=5500
    ```
 
