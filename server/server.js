@@ -22,16 +22,13 @@ app.post('/explain', async (req, res) => {
   const prompt = req.body.prompt;
   const userId = req.headers['x-client-id'];
 
-  // Validate request
   if (!prompt || !userId) {
-    return res.status(400).json({ result: "Missing prompt or userId" });
+    return res.status(400).json({ result: "⚠️ Missing prompt or userId" });
   }
 
-  // Sanitize and truncate the prompt
   const sanitizedPrompt = prompt.replace(/\s+/g, ' ').trim();
   const truncatedPrompt = sanitizedPrompt.slice(0, 300);
 
-  // Implement rate-limiting logic
   const today = new Date().toISOString().slice(0, 10);
   userLimits[userId] = userLimits[userId] || {};
   userLimits[userId][today] = userLimits[userId][today] || 0;
@@ -41,7 +38,6 @@ app.post('/explain', async (req, res) => {
   }
 
   try {
-    // Send request to Gemini API
     const geminiRes = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
       {
@@ -60,21 +56,19 @@ app.post('/explain', async (req, res) => {
     const data = await geminiRes.json();
     console.log("🔍 Full Gemini response:", JSON.stringify(data, null, 2));
 
-    // Extract generated content
-    const text = data?.candidates?.[0]?.content;
+    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
 
     if (!text) {
       return res.json({ result: "⚠️ Gemini response missing. Try a different theme or shorter content." });
     }
 
     userLimits[userId][today]++;
-    res.json({ result: text });
+    const formattedResponse = `🌟 Here's your explanation:\n\n${text}\n\n✨ Have fun exploring more!`;
+    res.json({ result: formattedResponse });
   } catch (err) {
-    // Handle server or API errors
     console.error("❌ Server error:", err);
     res.status(500).json({ result: "❌ Server error. Try again later." });
   }
 });
 
-// Start the server
 app.listen(PORT, () => console.log(`✅ Server running on http://localhost:${PORT}`));

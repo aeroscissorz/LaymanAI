@@ -34,15 +34,12 @@ document.getElementById('explainBtn').addEventListener('click', async () => {
         'x-client-id': clientId
       },
       body: JSON.stringify({
-        prompt: Explain this content in a fun way using the theme: ${theme}\n\n${truncatedContent}
+        prompt: `Explain this content in a fun way using the theme: ${theme}\n\n${truncatedContent}`
       })
     });
 
-    const data = await response.json();
-    const resultText = typeof data.result === 'string' 
-      ? data.result 
-      : JSON.stringify(data.result || data.error || "⚠️ No response.");
-    document.getElementById('result').textContent = resultText;
+    const data = await response.json(); // Expecting JSON response
+    document.getElementById('result').textContent = data.result || "⚠️ No response.";
   } catch (err) {
     document.getElementById('result').textContent = "❌ Server error. Please try again later.";
     console.error(err);
