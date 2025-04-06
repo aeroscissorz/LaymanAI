@@ -2,16 +2,22 @@
 
 LaymanAI is an innovative browser extension and backend service designed to transform complex information into simple, engaging, and easy-to-understand explanations. Whether you're a student, a professional, or just someone curious about learning, LaymanAI helps you retain and comprehend difficult concepts effortlessly.
 
+<<<<<<< HEAD
 ![LaymanAI Logo](client/icon.png)
 
 ---
 
+=======
+>>>>>>> 5f5f9d83438761c075ca463e415b986bad0ddfa7
 ## Why LaymanAI?
 
 In a world overflowing with information, understanding complex topics can be overwhelming. LaymanAI bridges the gap by breaking down intricate content into digestible insights, tailored to your preferred style or theme. It’s like having a personal tutor who speaks your language—literally.
 
+<<<<<<< HEAD
 ---
 
+=======
+>>>>>>> 5f5f9d83438761c075ca463e415b986bad0ddfa7
 ## Features
 
 - **Simplified Explanations**: Converts dense, technical content into fun, relatable, and easy-to-grasp summaries.
@@ -19,8 +25,11 @@ In a world overflowing with information, understanding complex topics can be ove
 - **Daily Usage Limits**: Ensures fair usage with a cap of 5 explanations per day.
 - **User-Friendly Interface**: A sleek and intuitive browser extension for seamless interaction.
 
+<<<<<<< HEAD
 ![LaymanAI Interface](client/interface.png)
 
+=======
+>>>>>>> 5f5f9d83438761c075ca463e415b986bad0ddfa7
 ---
 
 ## Project Structure
@@ -62,8 +71,13 @@ LaymanAI/
 
 3. Create a `.env` file in the `server` directory with the following content:
    ```env
+<<<<<<< HEAD
    GEMINI_API_KEY=your_api_key_here
    PORT=5500
+=======
+   API_KEY=your_api_key_here
+   PORT=5000
+>>>>>>> 5f5f9d83438761c075ca463e415b986bad0ddfa7
    ```
 
 4. Start the server:
@@ -136,6 +150,9 @@ LaymanAI is perfect for:
 
 ---
 
+<<<<<<< HEAD
 ## License
 
 This project is licensed under the MIT License.
+=======
+>>>>>>> 5f5f9d83438761c075ca463e415b986bad0ddfa7
