@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/explain"; // Replace with hosted URL when deployed
+const API_URL = "https://laymanai.onrender.com/explain"; // Replace with hosted URL when deployed
 
 // Preset theme buttons
 document.querySelectorAll('.preset').forEach(btn => {
