@@ -63,8 +63,18 @@ app.post('/explain', async (req, res) => {
     }
 
     userLimits[userId][today]++;
-    const formattedResponse = `🌟 Here's your explanation:\n\n${text}\n\n✨ Have fun exploring more!`;
+
+    // 🧹 Clean & format the response
+    const cleanedText = text
+      .replace(/\*+/g, '⭐')                          // Replace * bullets with stars
+      .replace(/([^\n])\n([^\n])/g, '$1\n\n$2')      // Add spacing between lines
+      .replace(/(?<=\n)\s*-\s*/g, '⭐ ')              // Convert dashes to stars
+      .replace(/(\n|^)⭐/g, '⭐');                     // Clean leading stars
+
+    const formattedResponse = `🌟 Here's your explanation:\n\n${cleanedText.trim()}\n\n✨ Have fun exploring more!`;
+
     res.json({ result: formattedResponse });
+
   } catch (err) {
     console.error("❌ Server error:", err);
     res.status(500).json({ result: "❌ Server error. Try again later." });

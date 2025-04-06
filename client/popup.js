@@ -17,13 +17,12 @@ document.getElementById('explainBtn').addEventListener('click', async () => {
     return;
   }
 
-  // Remove references like "[a]" and excessive formatting
-  content = content.replace(/\[[^\]]*\]/g, ''); // Remove bracketed references
-  content = content.replace(/\s+/g, ' ').trim(); // Sanitize whitespace
+  // Clean the content
+  content = content.replace(/\[[^\]]*\]/g, ''); // Remove [brackets]
+  content = content.replace(/\s+/g, ' ').trim(); // Collapse whitespace
 
-  // Truncate the cleaned content to 300 characters
+  // Truncate to 300 characters
   const truncatedContent = content.slice(0, 300);
-
   const clientId = getClientId();
 
   try {
@@ -38,11 +37,27 @@ document.getElementById('explainBtn').addEventListener('click', async () => {
       })
     });
 
-    const data = await response.json(); // Expecting JSON response
-    document.getElementById('result').textContent = data.result || "⚠️ No response.";
+    const contentType = response.headers.get('Content-Type');
+    let resultText = "";
+
+    if (contentType && contentType.includes("application/json")) {
+      const data = await response.json();
+      resultText = data.result || "⚠️ No result received.";
+    } else {
+      resultText = await response.text();
+    }
+
+    // Format result: escape HTML, allow emojis & line breaks
+    const formatted = resultText
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/\n/g, "<br>");
+
+    document.getElementById('result').innerHTML = formatted;
+
   } catch (err) {
+    console.error("❌ Fetch error:", err);
     document.getElementById('result').textContent = "❌ Server error. Please try again later.";
-    console.error(err);
   }
 });
 
