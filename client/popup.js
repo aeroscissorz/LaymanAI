@@ -33,7 +33,7 @@ document.getElementById('explainBtn').addEventListener('click', async () => {
         'x-client-id': clientId
       },
       body: JSON.stringify({
-        prompt: `Explain this content in a fun way using the theme: ${theme}\n\n${truncatedContent}`
+        prompt: `Explain this content (add relevant emojis too) in a fun way (as if i am a noob) using the theme: ${theme}\n\n${truncatedContent}`
       })
     });
 

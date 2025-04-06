@@ -66,12 +66,12 @@ app.post('/explain', async (req, res) => {
 
     // 🧹 Clean & format the response
     const cleanedText = text
-      .replace(/\*+/g, '⭐')                          // Replace * bullets with stars
-      .replace(/([^\n])\n([^\n])/g, '$1\n\n$2')      // Add spacing between lines
-      .replace(/(?<=\n)\s*-\s*/g, '⭐ ')              // Convert dashes to stars
-      .replace(/(\n|^)⭐/g, '⭐');                     // Clean leading stars
+      .replace(/\*+/g, '')                              // Remove * bullets
+      .replace(/([^\n])\n([^\n])/g, '$1\n\n$2')        // Add spacing between lines
+      .replace(/(?<=\n)\s*-\s*/g, '')                  // Remove dashes
+      .trim();                                         // Final cleanup
 
-    const formattedResponse = `🌟 Here's your explanation:\n\n${cleanedText.trim()}\n\n✨ Have fun exploring more!`;
+    const formattedResponse = `Here's your explanation:\n\n${cleanedText}\n\nHave fun exploring more!`;
 
     res.json({ result: formattedResponse });
 
